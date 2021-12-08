@@ -24,10 +24,13 @@ namespace KonicaHomework.DAL
             //IEnumerable<EventLog> events = context.EventLogs.Where(log => log.DocumentId == id)
             //    .Join(context.Events, log => log.EventId, e => e.Id, (log, e) => log)
             //    .OrderBy(log => log.HappenedAt);
-            return context.EventLogs
+            var logs = context.EventLogs
                 .Where(log => log.DocumentId == id)
-                .Join(context.Events, log => log.EventId, e => e.Id, (log, e) => log)
-                .OrderBy(log => log.HappenedAt);
+                .OrderBy(log => log.HappenedAt).ToList();
+            foreach (var log in logs) {
+                log.Title = context.Events.First(e => e.Id == log.EventId).Title;
+            }
+            return logs;
         }
     }
 }

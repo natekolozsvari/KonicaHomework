@@ -23,7 +23,7 @@ export default class App extends Component {
             <Redirect to="/documents" />
         </Route>
         {/*<Route exact path='/counter' component={Counter} />*/}
-        <Route exact path='/document/:id' component={Document} />
+        <Route exact path='/documents/:id' component={Document} />
       </Layout>
     );
   }

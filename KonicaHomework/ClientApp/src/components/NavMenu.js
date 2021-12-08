@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import SearchForm from './SearchForm';
 import './NavMenu.css';
 
 export class NavMenu extends Component {
@@ -28,6 +29,10 @@ export class NavMenu extends Component {
           <Container>
             <NavbarBrand tag={Link} to="/">KonicaHomework</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+
+            {/*<NavItem>*/}
+
+            {/*</NavItem>*/}
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>

@@ -21,7 +21,7 @@ const DocumentTable = ({ documents }) => {
                     {documents.map(document =>
                         <tr key={document.id}>
                             <td>{document.id}</td>
-                            <td><Link to={`/document/${document.id}`}>{document.title}</Link></td>
+                            <td><Link to={`/documents/${document.id}`}>{document.title}</Link></td>
                             <td>{document.extension}</td>
                             <td>{document.source}</td>
                         </tr>

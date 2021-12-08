@@ -1,13 +1,15 @@
 ﻿import React, { Component, useEffect, useState } from 'react';
 import { ReactSession } from 'react-client-session';
 import { Link } from "react-router-dom";
-import DocumentTable from "./DocumentTable"
+import DocumentTable from "./DocumentTable";
+import SearchForm from "./SearchForm";
 import axios from "axios";
 
 
 ReactSession.set("id", 1);
 
-const DocumentList = ({}) => {
+const DocumentList = ({ }) => {
+    const [searchTerm, setSearchTerm] = useState("");
     const [documents, setDocuments] = useState([]);
 
     useEffect(() => {
@@ -17,7 +19,13 @@ const DocumentList = ({}) => {
             })
     }, [])
 
-    console.log(documents);
+    const search = (searchTerm) => {
+        console.log(searchTerm);
+        axios(`/api/documents/search?query=${searchTerm}`)
+            .then(response => {
+                setDocuments(response.data);
+            })
+    }
 
 
     return (
@@ -27,10 +35,14 @@ const DocumentList = ({}) => {
             )}
             {ReactSession.get("id") != null && (
                 <div>
-            <h1>Documents</h1>
-
-                    <DocumentTable documents={documents}/>
+                    <div style={{display: "inline-flex", width: "100%", justifyContent: "space-between"}}>
+                        <h1 style={{ paddingBottom: "20px" }}>Documents</h1>
+                        <div style={{paddingTop: "10px"}}>
+                            <SearchForm search={search}/>
+                        </div>
                     </div>
+                    <DocumentTable documents={documents}/>
+                </div>
             )}
         </div>
     );

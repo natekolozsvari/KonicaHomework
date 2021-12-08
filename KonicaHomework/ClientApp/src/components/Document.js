@@ -2,6 +2,7 @@
 import { ReactSession } from 'react-client-session';
 import { Link, useParams } from "react-router-dom";
 import DocumentTable from "./DocumentTable";
+import EventTable from "./EventTable";
 import axios from "axios";
 
 

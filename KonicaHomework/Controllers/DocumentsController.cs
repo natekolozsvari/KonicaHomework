@@ -39,9 +39,9 @@ namespace KonicaHomework.Controllers
         }
         
         [HttpGet("search")]
-        public IEnumerable<Document> GetDocumentsByTitle(string searchQuery)
+        public IEnumerable<Document> GetDocumentsByTitle(string query)
         {
-            return documentRepository.GetDocumentsByTitle(searchQuery);
+            return documentRepository.GetDocumentsByTitle(query);
         }
     }
 }
