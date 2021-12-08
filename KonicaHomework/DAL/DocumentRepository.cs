@@ -15,6 +15,11 @@ namespace KonicaHomework.DAL
             this.context = context;
         }
 
+        public Document GetDocument(int id)
+        {
+            return context.Documents.FirstOrDefault(doc => doc.Id == id);
+        }
+
         public IEnumerable<Document> GetTopLevelDocuments()
         {
             int eventId = context.Events.First(e => e.Title.Equals("Beérkezés")).Id;

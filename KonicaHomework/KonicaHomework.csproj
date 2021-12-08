@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\components\JavaScript.js" />
+    <None Remove="ClientApp\src\components\JavaScript1.js" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

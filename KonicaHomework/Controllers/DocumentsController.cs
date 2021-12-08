@@ -27,6 +27,12 @@ namespace KonicaHomework.Controllers
         }
 
         [HttpGet("{id}")]
+        public Document GetDocument(int id)
+        {
+            return documentRepository.GetDocument(id);
+        }
+
+        [HttpGet("children/{id}")]
         public IEnumerable<Document> GetChildrenForDocument(int id)
         {
             return documentRepository.GetChildrenForDocument(id);

@@ -27,6 +27,7 @@ namespace KonicaHomework
             services.AddControllersWithViews();
 
             services.AddScoped<IDocumentRepository, DocumentRepository>();
+            services.AddScoped<IEventRepository, EventRepository>();
 
             services.AddDbContextPool<AppDBContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
