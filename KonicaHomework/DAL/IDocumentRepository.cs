@@ -12,8 +12,8 @@ namespace KonicaHomework.DAL
         IEnumerable<Document> GetTopLevelDocuments();
         IEnumerable<Document> GetChildrenForDocument(int parentId);
         IEnumerable<Document> GetDocumentsByTitle(string title);
-        void AddDocument(Document document);
-        void DeleteDocument(int docId);
-        void UpdateDocument(Document document);
+        //void AddDocument(Document document);
+        //void DeleteDocument(int docId);
+        //void UpdateDocument(Document document);
     }
 }

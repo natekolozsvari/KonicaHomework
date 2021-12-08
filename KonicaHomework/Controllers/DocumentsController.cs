@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KonicaHomework.DAL;
+using KonicaHomework.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -10,14 +11,31 @@ namespace KonicaHomework.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DocumentsController
+    public class DocumentsController : Controller
     {
-        public IDocumentRepository DocumentRepository { get; set; }
+        private IDocumentRepository documentRepository;
 
         public DocumentsController(IDocumentRepository repo)
         {
-            DocumentRepository = repo;
+            documentRepository = repo;
         }
 
+        [HttpGet]
+        public IEnumerable<Document> GetTopLevelDocuments()
+        {
+            return documentRepository.GetTopLevelDocuments();
+        }
+
+        [HttpGet("{id}")]
+        public IEnumerable<Document> GetChildrenForDocument(int id)
+        {
+            return documentRepository.GetChildrenForDocument(id);
+        }
+        
+        [HttpGet("search")]
+        public IEnumerable<Document> GetDocumentsByTitle(string searchQuery)
+        {
+            return documentRepository.GetDocumentsByTitle(searchQuery);
+        }
     }
 }
