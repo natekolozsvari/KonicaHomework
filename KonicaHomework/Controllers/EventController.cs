@@ -1,4 +1,5 @@
-﻿using KonicaHomework.Models;
+﻿using KonicaHomework.DAL;
+using KonicaHomework.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,9 @@ namespace KonicaHomework.Controllers
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<Event> GetEventsForDocument(int id)
+        public IEnumerable<EventLog> GetEventsForDocument(int id)
         {
-            return 
+            return eventRepository.GetEventsForDocument(id);
         }
     }
 }

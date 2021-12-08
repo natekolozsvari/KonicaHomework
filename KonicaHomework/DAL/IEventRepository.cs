@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace KonicaHomework.DAL
 {
-    interface IEventRepository
+    public interface IEventRepository
     {
-        IEnumerable<Event> GetEventsForDocument(int id);
+        IEnumerable<EventLog> GetEventsForDocument(int id);
     }
 }
