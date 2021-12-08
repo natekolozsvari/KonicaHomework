@@ -75,9 +75,9 @@ namespace KonicaHomework.Models
 
                 entity.ToTable("naplo");
 
-                entity.Property(e => e.DokumentumId).HasColumnName("dokumentum_id");
+                entity.Property(e => e.DocumentId).HasColumnName("dokumentum_id");
 
-                entity.Property(e => e.EsemenyId).HasColumnName("esemeny_id");
+                entity.Property(e => e.EventId).HasColumnName("esemeny_id");
 
                 entity.Property(e => e.HappenedAt).HasColumnName("happened_at");
             });
