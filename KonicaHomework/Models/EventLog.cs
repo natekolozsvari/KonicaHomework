@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace KonicaHomework.Models
 {
-    public partial class Log
+    public partial class EventLog
     {
         public byte DocumentId { get; set; }
         public byte EventId { get; set; }

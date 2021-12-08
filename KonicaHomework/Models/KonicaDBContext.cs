@@ -19,7 +19,7 @@ namespace KonicaHomework.Models
 
         public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<Event> Events { get; set; }
-        public virtual DbSet<Log> Logs { get; set; }
+        public virtual DbSet<EventLog> EventLogs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -69,7 +69,7 @@ namespace KonicaHomework.Models
                     .HasColumnName("title");
             });
 
-            modelBuilder.Entity<Log>(entity =>
+            modelBuilder.Entity<EventLog>(entity =>
             {
                 entity.HasNoKey();
 
