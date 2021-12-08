@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KonicaHomework.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,17 @@ namespace KonicaHomework.Controllers
 {
     public class EventController : Controller
     {
-        public IActionResult Index()
+        private IEventRepository eventRepository;
+
+        public EventController(IEventRepository repo)
         {
-            return View();
+            eventRepository = repo;
+        }
+
+        [HttpGet("{id}")]
+        public IEnumerable<Event> GetEventsForDocument(int id)
+        {
+            return 
         }
     }
 }
