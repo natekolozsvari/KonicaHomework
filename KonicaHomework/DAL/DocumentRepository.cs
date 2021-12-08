@@ -17,12 +17,14 @@ namespace KonicaHomework.DAL
 
         public IEnumerable<Document> GetTopLevelDocuments()
         {
-            return context.Documents.Where(doc => doc.MainId == 0);
+            int eventId = context.Events.First(e => e.Title.Equals("Beérkezés")).Id;
+            return context.Documents.Where(doc => doc.MainId == 0).OrderBy(doc => context.EventLogs.First(log => log.DocumentId == doc.Id && log.EventId == eventId).HappenedAt);
         }
 
         public IEnumerable<Document> GetChildrenForDocument(int parentId)
         {
-            return context.Documents.Where(doc => doc.MainId == parentId);
+            int eventId = context.Events.First(e => e.Title.Equals("Létrehozás")).Id;
+            return context.Documents.Where(doc => doc.MainId == parentId).OrderBy(doc => context.EventLogs.First(log => log.DocumentId == doc.Id && log.EventId == eventId).HappenedAt);
         }
 
         public IEnumerable<Document> GetDocumentsByTitle(string title)
