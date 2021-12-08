@@ -8,7 +8,6 @@ namespace KonicaHomework.DAL
 {
     public interface IDocumentRepository
     {
-        IEnumerable<Document> GetDocuments();
         IEnumerable<Document> GetTopLevelDocuments();
         IEnumerable<Document> GetChildrenForDocument(int parentId);
         IEnumerable<Document> GetDocumentsByTitle(string title);

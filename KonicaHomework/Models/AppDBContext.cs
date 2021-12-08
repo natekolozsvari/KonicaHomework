@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace KonicaHomework.Models
 {
-    public partial class KonicaDBContext : DbContext
+    public partial class AppDBContext : DbContext
     {
-        public KonicaDBContext()
+        public AppDBContext()
         {
         }
 
-        public KonicaDBContext(DbContextOptions<KonicaDBContext> options)
+        public AppDBContext(DbContextOptions<AppDBContext> options)
             : base(options)
         {
         }
