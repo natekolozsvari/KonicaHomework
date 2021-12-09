@@ -28,15 +28,19 @@ const Login = () => {
         axios.post("/api/user/login", userData).then(response => {
             console.log(response.data);
             if (response.data === "") {
-                alert("Wrong username or password");
+                alert("Wrong username or password!");
                 return;
             }
             else {
                 let user = response.data;
-                console.log(user);
-                localStorage.setItem("id", user.id);
-                localStorage.setItem("username", user.username);
-                setLoggedIn(true);
+                if (user.inactive === true) {
+                    alert("Inactive user!");
+                }
+                else {
+                    localStorage.setItem("id", user.id);
+                    localStorage.setItem("username", user.username);
+                    setLoggedIn(true);
+                }
                 return;
             }
         });
@@ -49,21 +53,29 @@ const Login = () => {
 
     return (
         <div>
-            <h1 style={{ paddingBottom: "20px" }}>Log in</h1>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" name="Username" placeholder="Username" onChange={handleChange} />
-                </Form.Group>
+            {localStorage.getItem("id") !== null && (
+                <h1>You are already logged in!</h1>
+            )}
+            {localStorage.getItem("id") === null && (
+                <>
+                <h1 style={{ paddingBottom: "20px" }}>Log in</h1>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" name="Username" placeholder="Username" onChange={handleChange} />
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="Password" placeholder="Password" onChange={handleChange}/>
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Log in
-                </Button>
-            </Form>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" name="Password" placeholder="Password" onChange={handleChange}/>
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Log in
+                    </Button>
+                        </Form>
+                </>
+
+            )}
         </div>
     );
 }

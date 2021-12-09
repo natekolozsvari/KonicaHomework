@@ -8,7 +8,6 @@ import axios from "axios";
 
 
 const DocumentList = ({ }) => {
-    const [searchTerm, setSearchTerm] = useState("");
     const [documents, setDocuments] = useState([]);
 
     useEffect(() => {

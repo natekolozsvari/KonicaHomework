@@ -1,6 +1,7 @@
 ﻿using KonicaHomework.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,6 +41,50 @@ namespace KonicaHomework.DAL
         public bool IsUserInactive(int id)
         {
             return context.Users.FirstOrDefault(user => user.Id == id).Inactive;
+        }
+
+        public void Log(User user, bool success)
+        {
+            var tempUser = GetUserByName(user.Username);
+            if (tempUser.Inactive)
+            {
+                success = false;
+            }
+            var log = new Log
+            {
+                Date = DateTime.Now,
+                Username = user.Username,
+                Event = success ? "Successful login" : "Unsuccessful login"
+            };
+            context.Logs.Add(log);
+            context.SaveChanges();
+            if (!tempUser.Inactive)
+            {
+                var lastFive = context.Logs.Where(log => log.Username == user.Username).OrderByDescending(log => log.Date).Take(5);
+                if (lastFive.Where(log => log.Event == "Unsuccessful login").Count() == 5)
+                {
+                    tempUser.Inactive = true;
+                    UpdateUser(tempUser);
+                    var deactivateLog = new Log
+                    {
+                        Date = DateTime.Now,
+                        Username = user.Username,
+                        Event = "User deactivated"
+                    };
+                    context.Logs.Add(deactivateLog);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        private string GetIp()
+        {
+            string ip = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (string.IsNullOrEmpty(ip))
+            {
+                ip = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+            }
+            return ip;
         }
 
         public void UpdateUser(User userChanges)

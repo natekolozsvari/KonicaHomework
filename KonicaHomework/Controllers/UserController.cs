@@ -44,14 +44,12 @@ namespace KonicaHomework.Controllers
         {
 
             var tempUser = userRepository.GetUserByName(user.Username);
-            if (tempUser == null)
+            if (tempUser != null && tempUser.Password.Equals(HashPassword(user.Password, tempUser.Salt).Item2))
             {
-                return null;
-            }
-            if (tempUser.Password.Equals(HashPassword(user.Password, tempUser.Salt).Item2))
-            {
+                userRepository.Log(user, true);
                 return tempUser;
             }
+            userRepository.Log(user, false);
             return null;
         }
 

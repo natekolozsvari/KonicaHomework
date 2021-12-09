@@ -47,21 +47,28 @@ const Registration = () => {
 
     return (
         <div>
-            <h1 style={{paddingBottom: "20px"}}>Registration</h1>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" name="Username" placeholder="Username" onChange={handleChange}/>
-                </Form.Group>
+            {localStorage.getItem("id") !== null && (
+                <h1>You are already logged in!</h1>
+            )}
+            {localStorage.getItem("id") === null && (
+                <>
+                    <h1 style={{ paddingBottom: "20px" }}>Registration</h1>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="text" name="Username" placeholder="Username" onChange={handleChange} />
+                        </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="Password" placeholder="Password" onChange={handleChange}/>
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Register
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" name="Password" placeholder="Password" onChange={handleChange} />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            Register
                 </Button>
-            </Form>
+                    </Form>
+                </>
+            )}
         </div>
     );
 }

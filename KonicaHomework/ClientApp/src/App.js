@@ -5,12 +5,11 @@ import  DocumentList  from './components/DocumentList';
 import Document from './components/Document';
 import Registration from './components/Registration';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import { Counter } from './components/Counter';
-import { ReactSession } from 'react-client-session';
 import axios from "axios";
 import './custom.css'
 
-ReactSession.setStoreType("localStorage");
 
 
 export default class App extends Component {
@@ -27,6 +26,7 @@ export default class App extends Component {
         <Route exact path='/documents/:id' component={Document} />
         <Route exact path='/registration' component={Registration} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/logout' component={Logout} />
 
       </Layout>
     );

@@ -36,18 +36,24 @@ const Document = ({ }) => {
 
     return (
         <div>
-            <h1 style={{ paddingBottom: "20px" }}>{document.title}.{document.extension}</h1>
-            {children.length != 0 && (
+            {localStorage.getItem("id") === null && (
+                <h1>Log in to view documents!</h1>
+            )}
+            {localStorage.getItem("id") !== null && (
                 <div>
-                    <h2>Children</h2>
-                    <DocumentTable documents={children}/>
+                    <h1 style={{ paddingBottom: "20px" }}>{document.title}.{document.extension}</h1>
+                    {children.length != 0 && (
+                        <div>
+                            <h2>Children</h2>
+                            <DocumentTable documents={children} />
+                        </div>
+                    )}
+                    <div>
+                        <h2>Events</h2>
+                        <EventTable events={events} />
+                    </div>
                 </div>
-                )
-            }
-            <div>
-                <h2>Events</h2>
-                <EventTable events={events} />
-            </div>
+            )}
         </div>
     );
 }

@@ -14,5 +14,6 @@ namespace KonicaHomework.DAL
         bool IsUserInactive(int id);
         void AddUser(User user);
         void UpdateUser(User user);
+        void Log(User user, bool success);
     }
 }
