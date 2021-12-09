@@ -44,12 +44,14 @@ namespace KonicaHomework.Controllers
         {
 
             var tempUser = userRepository.GetUserByName(user.Username);
+            var remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
+
             if (tempUser != null && tempUser.Password.Equals(HashPassword(user.Password, tempUser.Salt).Item2))
             {
-                userRepository.Log(user, true);
+                userRepository.Log(user, true, remoteIpAddress);
                 return tempUser;
             }
-            userRepository.Log(user, false);
+            userRepository.Log(user, false, remoteIpAddress);
             return null;
         }
 

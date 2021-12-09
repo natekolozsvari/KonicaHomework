@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace KonicaHomework.DAL
@@ -14,6 +15,6 @@ namespace KonicaHomework.DAL
         bool IsUserInactive(int id);
         void AddUser(User user);
         void UpdateUser(User user);
-        void Log(User user, bool success);
+        void Log(User user, bool success, IPAddress ip);
     }
 }

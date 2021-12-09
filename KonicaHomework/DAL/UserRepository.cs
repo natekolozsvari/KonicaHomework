@@ -5,6 +5,7 @@ using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace KonicaHomework.DAL
 {
@@ -43,7 +44,7 @@ namespace KonicaHomework.DAL
             return context.Users.FirstOrDefault(user => user.Id == id).Inactive;
         }
 
-        public void Log(User user, bool success)
+        public void Log(User user, bool success, IPAddress ip)
         {
             var tempUser = GetUserByName(user.Username);
             if (tempUser.Inactive)
@@ -52,6 +53,7 @@ namespace KonicaHomework.DAL
             }
             var log = new Log
             {
+                Ip = ip.ToString(),
                 Date = DateTime.Now,
                 Username = user.Username,
                 Event = success ? "Successful login" : "Unsuccessful login"
@@ -67,6 +69,7 @@ namespace KonicaHomework.DAL
                     UpdateUser(tempUser);
                     var deactivateLog = new Log
                     {
+                        Ip = ip.ToString(),
                         Date = DateTime.Now,
                         Username = user.Username,
                         Event = "User deactivated"
@@ -75,16 +78,6 @@ namespace KonicaHomework.DAL
                     context.SaveChanges();
                 }
             }
-        }
-
-        private string GetIp()
-        {
-            string ip = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-            if (string.IsNullOrEmpty(ip))
-            {
-                ip = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-            }
-            return ip;
         }
 
         public void UpdateUser(User userChanges)
