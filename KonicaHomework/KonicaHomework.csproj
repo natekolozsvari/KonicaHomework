@@ -32,7 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\Counter.js" />
     <None Remove="ClientApp\src\components\FetchData.js" />
+    <None Remove="ClientApp\src\components\Home.js" />
     <None Remove="ClientApp\src\components\JavaScript.js" />
     <None Remove="ClientApp\src\components\JavaScript1.js" />
   </ItemGroup>

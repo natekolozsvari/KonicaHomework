@@ -1,15 +1,7 @@
-﻿import React, { Component, useEffect, useState } from 'react';
-import { ReactSession } from 'react-client-session';
-import { Link, useParams } from "react-router-dom";
-import { Form, Row, Col, Button, Label, Input } from 'react-bootstrap';
-import DocumentTable from "./DocumentTable";
-import EventTable from "./EventTable";
+﻿import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import axios from "axios";
 import { Redirect } from "react-router";
-
-
-
-
 
 const Login = () => {
     const [userData, setUserData] = useState({
@@ -18,7 +10,6 @@ const Login = () => {
     });
     const [loggedIn, setLoggedIn] = useState(false);
 
-
     const handleChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value });
     }
@@ -26,7 +17,6 @@ const Login = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         axios.post("/api/user/login", userData).then(response => {
-            console.log(response.data);
             if (response.data === "") {
                 alert("Wrong username or password!");
                 return;
@@ -45,7 +35,6 @@ const Login = () => {
             }
         });
     }
-
 
     if (loggedIn) {
         return <Redirect to="/" />;

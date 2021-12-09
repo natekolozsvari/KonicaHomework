@@ -1,13 +1,9 @@
-﻿import React, { Component, useEffect, useState } from 'react';
-import { ReactSession } from 'react-client-session';
-import { Link } from "react-router-dom";
+﻿import React, { useEffect, useState } from 'react';
 import DocumentTable from "./DocumentTable";
 import SearchForm from "./SearchForm";
 import axios from "axios";
 
-
-
-const DocumentList = ({ }) => {
+const DocumentList = () => {
     const [documents, setDocuments] = useState([]);
 
     useEffect(() => {
@@ -24,11 +20,10 @@ const DocumentList = ({ }) => {
             })
     }
 
-
     return (
         <div>
             {localStorage.getItem("id") === null && (
-                <h1>Log in to view documents!</h1>
+                <h1>Log in to view the documents!</h1>
             )}
             {localStorage.getItem("id") !== null && (
                 <div>

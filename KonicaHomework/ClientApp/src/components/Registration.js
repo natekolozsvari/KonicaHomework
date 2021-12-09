@@ -1,14 +1,7 @@
-﻿import React, { Component, useEffect, useState } from 'react';
-import { ReactSession } from 'react-client-session';
-import { Link, useParams } from "react-router-dom";
-import { Form, Row, Col, Button, Label, Input} from 'react-bootstrap';
-import DocumentTable from "./DocumentTable";
-import EventTable from "./EventTable";
+﻿import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import axios from "axios";
 import { Redirect } from "react-router";
-
-
-
 
 const Registration = () => {
     const [userData, setUserData] = useState({
@@ -16,7 +9,6 @@ const Registration = () => {
         Password: ""
     });
     const [newUser, setNewUser] = useState(false);
-
 
     const handleChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value });

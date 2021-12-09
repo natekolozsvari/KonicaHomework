@@ -6,17 +6,12 @@ import Document from './components/Document';
 import Registration from './components/Registration';
 import Login from './components/Login';
 import Logout from './components/Logout';
-import { Counter } from './components/Counter';
-import axios from "axios";
 import './custom.css'
-
-
 
 export default class App extends Component {
   static displayName = App.name;
 
   render () {
-
     return (
       <Layout>
         <Route exact path='/documents' component={DocumentList} />
@@ -27,7 +22,6 @@ export default class App extends Component {
         <Route exact path='/registration' component={Registration} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/logout' component={Logout} />
-
       </Layout>
     );
   }

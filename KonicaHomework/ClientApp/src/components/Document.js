@@ -1,14 +1,13 @@
-﻿import React, { Component, useEffect, useState } from 'react';
-import { ReactSession } from 'react-client-session';
-import { Link, useParams } from "react-router-dom";
+﻿import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import DocumentTable from "./DocumentTable";
 import EventTable from "./EventTable";
 import axios from "axios";
 
 
 
-const Document = ({ }) => {
-    const { id }= useParams();
+const Document = () => {
+    const { id } = useParams();
     const [document, setDocument] = useState({});
     const [children, setChildren] = useState([]);
     const [events, setEvents] = useState([]);
@@ -29,20 +28,15 @@ const Document = ({ }) => {
             })
     }, [id])
 
-    console.log(document);
-    console.log(children);
-    console.log(events);
-
-
     return (
         <div>
             {localStorage.getItem("id") === null && (
-                <h1>Log in to view documents!</h1>
+                <h1>Log in to view the documents!</h1>
             )}
             {localStorage.getItem("id") !== null && (
                 <div>
                     <h1 style={{ paddingBottom: "20px" }}>{document.title}.{document.extension}</h1>
-                    {children.length != 0 && (
+                    {children.length !== 0 && (
                         <div>
                             <h2>Children</h2>
                             <DocumentTable documents={children} />

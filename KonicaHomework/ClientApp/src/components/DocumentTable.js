@@ -1,11 +1,7 @@
-﻿import React, { Component, useEffect, useState } from 'react';
+﻿import React from 'react';
 import { Link } from "react-router-dom";
 
-
-
-
 const DocumentTable = ({ documents }) => {
-
     return (
         <div>
             <table className='table table-striped' aria-labelledby="tabelLabel">

@@ -1,5 +1,5 @@
-﻿import React, { Component, useEffect, useState } from 'react';
-import { Form, Row, Col, Button, Label, Input } from 'reactstrap';
+﻿import React, { useState } from 'react';
+import { Form, Row, Col, Button, Input } from 'reactstrap';
 
 const SearchForm = ({ search }) => {
     const [searchTerm, setSearchTerm] = useState("");

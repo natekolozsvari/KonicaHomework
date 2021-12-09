@@ -1,4 +1,4 @@
-﻿import React, { Component, useEffect, useState } from 'react';
+﻿import React from 'react';
 
 const EventTable = ({ events }) => {
     return (
