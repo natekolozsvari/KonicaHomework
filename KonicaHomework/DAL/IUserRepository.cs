@@ -10,6 +10,7 @@ namespace KonicaHomework.DAL
     {
         bool DoesUsernameExist(string name);
         User GetUser(int id);
+        User GetUserByName(string name);
         bool IsUserInactive(int id);
         void AddUser(User user);
         void UpdateUser(User user);

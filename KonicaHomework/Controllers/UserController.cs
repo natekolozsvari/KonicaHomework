@@ -33,10 +33,26 @@ namespace KonicaHomework.Controllers
             return userRepository.GetUser(id);
         }
 
-        [HttpGet("/inactive/{id}")]
+        [HttpGet("inactive/{id}")]
         public bool IsUserInactive(int id)
         {
             return userRepository.IsUserInactive(id);
+        }
+
+        [HttpPost("login")]
+        public User Login(User user)
+        {
+
+            var tempUser = userRepository.GetUserByName(user.Username);
+            if (tempUser == null)
+            {
+                return null;
+            }
+            if (tempUser.Password.Equals(HashPassword(user.Password, tempUser.Salt).Item2))
+            {
+                return tempUser;
+            }
+            return null;
         }
 
         [HttpPost]

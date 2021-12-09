@@ -32,6 +32,11 @@ namespace KonicaHomework.DAL
             return context.Users.FirstOrDefault(user => user.Id == id);
         }
 
+        public User GetUserByName(string name)
+        {
+            return context.Users.FirstOrDefault(user => user.Username == name);
+        }
+
         public bool IsUserInactive(int id)
         {
             return context.Users.FirstOrDefault(user => user.Id == id).Inactive;

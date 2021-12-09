@@ -6,7 +6,6 @@ import SearchForm from "./SearchForm";
 import axios from "axios";
 
 
-ReactSession.set("id", 1);
 
 const DocumentList = ({ }) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -29,10 +28,10 @@ const DocumentList = ({ }) => {
 
     return (
         <div>
-            {ReactSession.get("id") == null && (
+            {localStorage.getItem("id") === null && (
                 <h1>Log in to view documents!</h1>
             )}
-            {ReactSession.get("id") != null && (
+            {localStorage.getItem("id") !== null && (
                 <div>
                     <div style={{display: "inline-flex", width: "100%", justifyContent: "space-between"}}>
                         <h1 style={{ paddingBottom: "20px" }}>Documents</h1>
