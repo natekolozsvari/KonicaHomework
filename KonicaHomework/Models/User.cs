@@ -7,14 +7,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KonicaHomework.Models
 {
-    public partial class Log
+    public partial class User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public byte Id { get; set; }
-        public string Ip { get; set; }
-        public DateTime? Date { get; set; }
         public string Username { get; set; }
-        public string Event { get; set; }
+        public string Password { get; set; }
+        public byte[] Salt { get; set; }
+        public bool Inactive { get; set; }
     }
 }

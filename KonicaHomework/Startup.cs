@@ -1,7 +1,10 @@
+using KonicaHomework.DAL;
+using KonicaHomework.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +26,18 @@ namespace KonicaHomework
 
             services.AddControllersWithViews();
 
+            services.AddScoped<IDocumentRepository, DocumentRepository>();
+            services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddDbContextPool<AppDBContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+            });
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -49,6 +64,8 @@ namespace KonicaHomework
             app.UseSpaStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
