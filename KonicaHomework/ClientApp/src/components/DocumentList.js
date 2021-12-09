@@ -20,7 +20,6 @@ const DocumentList = ({ }) => {
     }, [])
 
     const search = (searchTerm) => {
-        console.log(searchTerm);
         axios(`/api/documents/search?query=${searchTerm}`)
             .then(response => {
                 setDocuments(response.data);

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router';
 import { Layout } from './components/Layout';
 import  DocumentList  from './components/DocumentList';
-import  Document  from './components/Document';
+import Document from './components/Document';
+import Registration from './components/Registration';
 import { Counter } from './components/Counter';
 import { ReactSession } from 'react-client-session';
 import axios from "axios";
@@ -22,8 +23,9 @@ export default class App extends Component {
         <Route exact path="/">
             <Redirect to="/documents" />
         </Route>
-        {/*<Route exact path='/counter' component={Counter} />*/}
         <Route exact path='/documents/:id' component={Document} />
+        <Route exact path='/registration' component={Registration} />
+
       </Layout>
     );
   }
